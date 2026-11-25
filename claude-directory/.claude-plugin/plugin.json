@@ -1,0 +1,14 @@
+{
+  "name": "cinematic-edit",
+  "version": "1.1.0",
+  "description": "Edit real camera footage into premium cinematic brand films: frame-rate-first inventory, whole-clip watching, artistic shot judging, slow motion and speed ramps, log colour, cutting to music, checks and an independent critic.",
+  "author": {
+    "name": "Deniz Gemici",
+    "url": "https://denizgemici.com"
+  },
+  "homepage": "https://github.com/denizgemici/cinematic-edit",
+  "repository": "https://github.com/denizgemici/cinematic-edit",
+  "license": "Apache-2.0",
+  "keywords": ["video", "editing", "cinematic", "slow-motion", "color-grading", "ffmpeg", "reels"],
+  "icon": ".claude-plugin/icon.png"
+}

@@ -16,5 +16,7 @@
     "ffmpeg",
     "premiere",
     "reels"
-  ]
+  ],
+  "icon": ".claude-plugin/icon.png",
+  "homepage": "https://github.com/denizgemici/cinematic-edit"
 }

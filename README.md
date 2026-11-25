@@ -36,6 +36,8 @@ Claude Code plugin:
 
 Manual: copy `skills/cinematic-edit` into `~/.claude/skills/`.
 
+The Claude directory lists the method edition in `claude-directory/`: the same method with plain ffmpeg recipes instead of the bundled tools.
+
 Requirements: Python 3.9+ with `numpy` and `Pillow`, and `ffmpeg`/`ffprobe` on your PATH (or set `CE_FFMPEG` / `CE_FFPROBE`). Nothing else.
 
 ## Quick start
