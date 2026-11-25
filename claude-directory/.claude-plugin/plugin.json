@@ -9,6 +9,17 @@
   "homepage": "https://github.com/denizgemici/cinematic-edit",
   "repository": "https://github.com/denizgemici/cinematic-edit",
   "license": "Apache-2.0",
-  "keywords": ["video", "editing", "cinematic", "slow-motion", "color-grading", "ffmpeg", "reels"],
-  "icon": ".claude-plugin/icon.png"
+  "keywords": [
+    "video",
+    "editing",
+    "cinematic",
+    "slow-motion",
+    "color-grading",
+    "ffmpeg",
+    "reels"
+  ],
+  "icon": ".claude-plugin/icon.png",
+  "privacyPolicyUrl": "https://github.com/denizgemici/cinematic-edit/blob/main/PRIVACY.md",
+  "supportUrl": "https://github.com/denizgemici/cinematic-edit/issues",
+  "documentationUrl": "https://github.com/denizgemici/cinematic-edit#readme"
 }

@@ -18,5 +18,8 @@
     "reels"
   ],
   "icon": ".claude-plugin/icon.png",
-  "homepage": "https://github.com/denizgemici/cinematic-edit"
+  "homepage": "https://github.com/denizgemici/cinematic-edit",
+  "privacyPolicyUrl": "https://github.com/denizgemici/cinematic-edit/blob/main/PRIVACY.md",
+  "supportUrl": "https://github.com/denizgemici/cinematic-edit/issues",
+  "documentationUrl": "https://github.com/denizgemici/cinematic-edit#readme"
 }
