@@ -1,0 +1,14 @@
+{
+  "name": "denizgemici",
+  "owner": {
+    "name": "Deniz Gemici",
+    "url": "https://denizgemici.com"
+  },
+  "plugins": [
+    {
+      "name": "cinematic-edit",
+      "source": "./",
+      "description": "A working ad director's editing method as a skill. Raw footage in, a director's cut out."
+    }
+  ]
+}

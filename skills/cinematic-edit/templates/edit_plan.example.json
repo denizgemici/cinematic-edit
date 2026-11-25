@@ -1,0 +1,82 @@
+{
+  "title": "Example - fish and chips reel",
+  "idea": "One plate of fish and chips is made in a calm, warm motion and ends complete on the table.",
+  "structure": "arc: process to result",
+  "register": "premium",
+  "fps": 25,
+  "size": [1080, 1920],
+  "music": {
+    "file": "music/music.wav",
+    "start": 12.0,
+    "fade_in": 0.0,
+    "fade_out": 1.2,
+    "gain_db": 0,
+    "beats": "music/beats.json"
+  },
+  "shots": [
+    {
+      "src": "footage/A001.MOV", "in": 1.60, "out": 3.00,
+      "speed": 0.5, "lut": "luts/official_log_to_709.cube",
+      "scale": "close", "role": "hook",
+      "reason": "fries in the air: a motion hook in frame 0, real 50 fps slow motion (clean conform)"
+    },
+    {
+      "src": "footage/A002.MOV", "in": 6.40, "out": 8.00,
+      "lut": "luts/official_log_to_709.cube", "straighten": -0.8,
+      "reframe": {"x": 0.55, "y": 0.45, "zoom": 1.0},
+      "grade": {"exposure": 0.2, "temp": 0.15},
+      "stabilize": true,
+      "scale": "medium", "role": "build", "sound_db": -18,
+      "reason": "the cook and the kitchen give the place; real fryer sound, barely there; a touch brighter and warmer to match shot 1"
+    },
+    {
+      "src": "footage/A003.MOV", "in": 7.60, "out": 9.20,
+      "lut": "luts/official_log_to_709.cube",
+      "ramp": [[0, 1], [0.70, 1], [0.80, 2], [1.30, 2], [1.40, 1], [1.60, 1]],
+      "scale": "detail", "role": "turn",
+      "reason": "the fish is flipped: real time, slowing to 50% at the top of the flip, back to real time"
+    },
+    {
+      "src": "footage/A003.MOV", "in": 15.50, "out": 18.60,
+      "lut": "luts/official_log_to_709.cube", "push": [1.0, 1.04],
+      "transition": "dissolve:10", "scale": "detail", "role": "hero",
+      "reason": "the complete plate: the result, held longest"
+    },
+    {
+      "src": "graphics/end_card.png", "duration": 2.0,
+      "transition": "dissolve:8", "role": "end-card",
+      "reason": "designed end card (made elsewhere), on the music's last chord"
+    }
+  ],
+  "overlays": [
+    {"png": "graphics/logo_white.png", "start": 9.5, "end": 12.4, "fade": 10, "x": 390, "y": 1500, "opacity": 1.0}
+  ],
+  "notes": "Free text: why rules were broken on purpose, open questions.",
+  "_fields": {
+    "_": "Documentation only (keys starting with _ are ignored). Paths are relative to this plan's folder or absolute.",
+    "title, idea, structure, register": "idea = the one sentence the whole film obeys; register luxury|premium|brand|social|hype sets the ASL range",
+    "fps": "timeline rate: 25, 24, 30, 50 or NTSC 29.97 / 23.976 / \"30000/1001\" (kept exact)",
+    "size": "[width, height], even numbers: [1080, 1920] vertical, [1920, 1080] landscape",
+    "music": "file (use the WAV beats.py wrote), start (s into the track), fade_in, fade_out (s), gain_db, beats (beats.json)",
+    "shots[].src / in / out": "camera file and source seconds; a .png/.jpg src is a still shown for 'duration' seconds",
+    "shots[].duration": "seconds on screen, for still pictures only",
+    "shots[].speed": "0.5 = half speed. Clean conform = timeline fps / capture fps (50p on 25p = 0.5)",
+    "shots[].ramp": "[[source_s, k], ...] from 0 to out-in; k = slowdown (1 real time, 2 half speed); smooth between keys; replaces speed",
+    "shots[].interpolate": "true = synthesise missing frames (minterpolate) when the clip has too few for the slowdown; check every frame",
+    "shots[].optical_flow_ok": "true = you checked an uneven speed frame by frame (silences the clean-conform warning)",
+    "shots[].lut": "camera maker's official log-to-Rec.709 .cube; plan_check/lutcheck verify it really converts the log",
+    "shots[].grade": "gentle, after the LUT: exposure (stops), temp -1..1 (+ warm), tint -1..1 (+ magenta), contrast 0.8..1.2, saturation 0.8..1.2",
+    "shots[].stabilize": "true | \"vidstab\": two-pass vid.stab (crop-safe zoom); 8-bit 4:2:0 for that shot; no rolling-shutter fix; skipped with a warning when ffmpeg has no vid.stab",
+    "shots[].rotate": "EXTRA rotation 90|180|270; the camera's rotation flag is already applied by ffmpeg, so normally leave it out",
+    "shots[].straighten": "degrees; scan.py's tilt_deg says 'straighten': -tilt",
+    "shots[].reframe": "{x, y: focal point 0-1 of the source, zoom >= 1}",
+    "shots[].push": "[start_scale, end_scale] eased digital push (e.g. [1.0, 1.04]); keep to at most ~1/3 of shots",
+    "shots[].transition": "cut (default) | dissolve:FRAMES (overlaps both shots; the film gets shorter by FRAMES)",
+    "shots[].scale": "extreme-wide | wide | medium | close | detail",
+    "shots[].role": "hook | build | turn | hero | end | accent | breath | end-card",
+    "shots[].reason": "why the shot is here, what it does for the idea",
+    "shots[].text": "text that will be laid over this shot (timing check only; burn designed text in with overlays)",
+    "shots[].sound_db": "keep the shot's own sound at this gain (real-time shots only)",
+    "overlays[]": "designed PNG with alpha (end card, logo, title made elsewhere): png, start, end (film seconds), fade (frames, opacity only), x, y (top-left px; default centred), scale (fraction of output width), opacity 0-1"
+  }
+}
