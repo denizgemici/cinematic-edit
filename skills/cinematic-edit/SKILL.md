@@ -5,7 +5,7 @@ license: Apache-2.0
 metadata:
   author: Deniz Gemici
   url: https://denizgemici.com
-  version: 1.1.0
+  version: 1.1.1
 ---
 
 # Cinematic Edit

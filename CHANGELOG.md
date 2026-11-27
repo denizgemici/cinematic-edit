@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1 (2026-11-27)
+
+**Windows fix.** On Windows the LUT log conversion (`lut3d`) and stabilisation (`vidstabdetect` / `vidstabtransform`) failed, because a path such as `C:\Users\...\Temp\stab003.trf` breaks an ffmpeg filter string (`:` separates options and `\` escapes). A new `ff_path()` in `scripts/_common.py` turns backslashes into slashes, escapes `:` and quotes the whole path. `lut_filter()` and `render.py` use it for every file path given to a filter. The quoted form is also valid on macOS and Linux, so it is used everywhere.
+
+Verified: `selftest.py` 25/25 on Windows 11 (14/18 before the fix, reported by a tester) and 25/25 on macOS; `vidstabdetect` and `vidstabtransform` also run with a path that contains spaces, Turkish letters and a colon.
+
 ## 1.1.0 (2026-11-25)
 
 Script fixes after two independent reviews (a code review and a field test on real Fuji F-Log2 and Sony S-Log3 footage). This entry covers only `scripts/` and `templates/`. Run `python3 scripts/selftest.py` to check an install: it is offline and takes about 15 s.

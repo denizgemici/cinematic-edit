@@ -55,7 +55,7 @@ import sys
 import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _common import (find_tool, lut_filter, ffprobe_json, video_stream, rotation_of, rational,  # noqa: E402
+from _common import (find_tool, lut_filter, ff_path, ffprobe_json, video_stream, rotation_of, rational,  # noqa: E402
                      ramp_expr, is_still, parse_fps, fps_str, layout, scale_in_opts)
 
 
@@ -243,9 +243,9 @@ def stab_filters(s, src, tmp, i, start, length, ff):
     elif er == 180:
         pre.append("transpose=1,transpose=1")
     trf = os.path.join(tmp, "stab%03d.trf" % i)
-    vf = ",".join(pre + ["format=yuv420p", "vidstabdetect=shakiness=6:accuracy=15:stepsize=6:result=%s" % trf])
+    vf = ",".join(pre + ["format=yuv420p", "vidstabdetect=shakiness=6:accuracy=15:stepsize=6:result=%s" % ff_path(trf)])
     run([ff, "-v", "error", "-y", "-ss", "%.4f" % start, "-t", "%.4f" % length, "-i", src, "-vf", vf, "-f", "null", "-"])
-    return "format=yuv420p,vidstabtransform=input=%s:smoothing=12:optzoom=1:interpol=bicubic:crop=black" % trf
+    return "format=yuv420p,vidstabtransform=input=%s:smoothing=12:optzoom=1:interpol=bicubic:crop=black" % ff_path(trf)
 
 
 def main():

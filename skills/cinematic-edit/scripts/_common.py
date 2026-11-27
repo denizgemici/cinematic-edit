@@ -183,6 +183,18 @@ def font(size=14):
         return ImageFont.load_default()
 
 
+def ff_path(p):
+    """A file path made safe for an ffmpeg filter option on every OS.
+
+    In a filter string ":" separates options and "\\" escapes, so a Windows path
+    such as C:\\Users\\... breaks the filter. Use forward slashes, escape ":"
+    and quote the whole path (also valid on macOS and Linux).
+    """
+    p = os.path.abspath(p).replace("\\", "/")
+    p = p.replace("'", "'\\''").replace(":", "\\:")
+    return "'%s'" % p
+
+
 def lut_filter(lut_path):
     """ffmpeg filter string applying a .cube LUT with tetrahedral interpolation.
 
@@ -205,7 +217,7 @@ def lut_filter(lut_path):
         if not os.path.exists(safe):
             shutil.copyfile(p, safe)
         p = safe
-    return "lut3d=file=%s:interp=tetrahedral" % p
+    return "lut3d=file=%s:interp=tetrahedral" % ff_path(p)
 
 
 def luma(rgb):
